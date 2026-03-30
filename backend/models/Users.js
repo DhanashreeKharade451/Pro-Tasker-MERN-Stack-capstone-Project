@@ -20,7 +20,7 @@ const userSchema = new Schema({
     minlength: 5,
     required: true
     }
-});
+},{ timestamps: true });
 
 // Set up pre-save middleware to create password
 userSchema.pre("save", async function (next) {

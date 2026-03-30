@@ -24,7 +24,7 @@ const taskSchema = new Schema({
     ref: "Project",
     required: true,
   },
-});
+}  { timestamps: true });
 
 const Task = mongoose.model("Task", taskSchema);
 export default Task;
