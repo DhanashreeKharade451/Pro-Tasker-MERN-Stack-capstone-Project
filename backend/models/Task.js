@@ -1,11 +1,12 @@
 import mongoose, { Schema } from "mongoose";
-import Task from "../../../mod-15/TaskMasterApp/models/Task";
+
+
 
 const taskSchema = new Schema({
     title: {
     type: String,
     required: true,
-    unique: true,
+   
   },
 
   description: {
