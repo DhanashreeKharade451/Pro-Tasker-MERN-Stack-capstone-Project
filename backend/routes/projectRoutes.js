@@ -8,9 +8,46 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
     try{
-        const newProject = 
+        const newProject = await Project.create({
+            ...req.body,
+            user: req.user._id,
+        });
+
+        res.status(201).json(newProject);
 
     }catch(err){
         res.status(400).json({message: err.message});
     }
 });
+
+//GET /api/projects  --- get all projects for the valid user
+
+router.get("/", async(req,res) => {
+    try {
+    const projects = await Project.find({ user: req.user._id }).populate(
+      "user",
+    );
+    res.status(200).json(projects);
+  } catch(error) {
+
+     res.status(500).json({ message: error.message });
+  }
+});
+
+//GET /api/projects/:id --- get a single project
+
+router.get("/:id", async (req,res) => {
+    try{
+        const project = await Project.findOne({
+        _id: req.params.id, 
+        user: req.user._id,
+        });
+        
+       if (!project) {
+     return res.status(404).json({ message: `Project with ${req.params.id} is not found` });
+    }
+    res.status(200).json(project); 
+    }catch(err){
+         res.status(400).json({ message: error.message  });
+    }
+})
