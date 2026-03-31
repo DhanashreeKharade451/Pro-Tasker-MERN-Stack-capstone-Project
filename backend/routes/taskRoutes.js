@@ -26,3 +26,43 @@ router.post('/:projectId/task', async (req, res) => {
    }
         
 })
+
+//GET /api/projects/:projectId/tasks      -- get all tasks
+ router.get('/:projectId/tasks', async(req,res) =>{
+    try{
+        const tasks = await Task.find({
+                    //user: req.user_id,
+                    project: req.params.projectId,
+                }).populate("project")
+                res.status(200).json(tasks);
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+ });
+
+ //PUT /api/tasks/:taskId---------------Update a single task
+ router.put('/:taskId', async(req, res) =>{
+    try{
+         const task = await Task.findOne({_id: req.params.taskId}).populate("project");
+        
+                if(!task){
+                    return res.status(404).json({message: "Task not found"})
+                }
+        
+                if (task.project.user.toString() !== req.user._id){
+                    return res.status(403).json({message: 'User is not authorized to update the task'})
+                }  
+        
+                const updateTask = await Task.findByIdAndUpdate(
+                    req.params.taskId,
+                    req.body,
+                    {new: true},
+                );
+        
+                res.status(201).json(updateTask);
+    }catch(err){
+ res.status(500).json({message: err.message});
+    }
+ });
+
+ 
