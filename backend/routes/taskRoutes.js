@@ -65,4 +65,24 @@ router.post('/:projectId/task', async (req, res) => {
     }
  });
 
- 
+ //DELETE /api/tasks/:taskId  ------------------Delete a single task.
+ router.delete("/:taskId", async(req,res) => {
+    try{
+         const task = await Task.findOne({_id: req.params.taskId}).populate("project");
+        
+                 if(!task){
+                    return res.status(404).json({message: "Task not found"})
+                }
+        
+                if (task.project.user.toString() !== req.user._id){
+                    return res.status(403).json({message: 'User is not authorized to delete the task'})
+                }  
+        
+                const deletedTask = await Task.findByIdAndDelete(req.params.taskId);
+                res.status(200).json(deletedTask);           
+        
+    }catch(err){
+        res.status(500).json({message: error.message});
+    }
+ })
+ export default router;
