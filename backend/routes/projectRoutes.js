@@ -42,12 +42,36 @@ router.get("/:id", async (req,res) => {
         _id: req.params.id, 
         user: req.user._id,
         });
-        
+
        if (!project) {
      return res.status(404).json({ message: `Project with ${req.params.id} is not found` });
     }
     res.status(200).json(project); 
     }catch(err){
          res.status(400).json({ message: error.message  });
+    }
+})
+
+//PUT /api/projects/:id  -- update a project
+
+router.put("/:id", async(req,res) => {
+    try{
+        const project = await Project.findOne(req.params.id);
+
+         if (!project) {
+     return req.status(404).json({ message: "Project not found" });
+    }
+if(project.user.toString() !== req.user._id){
+     return res.status(403).json({ message: "user is not authorized to updatete this project" });
+}
+
+const updatedProject = await Project.findByIdAndUpdate(
+    req.params.id,
+      req.body,
+      { new: true },
+  );
+  res.status(201).json(updatedProject);
+    }catch{
+ res.status(500).json(error);
     }
 })
