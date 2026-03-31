@@ -74,4 +74,28 @@ const updatedProject = await Project.findByIdAndUpdate(
     }catch{
  res.status(500).json(error);
     }
+});
+
+//DELETE /api/projects/:id-------------- delete a project and it's tasks
+router.delete("/:id", async (req,res) => {
+    try{
+ const project = await Project.findOne(req.params.id);
+
+    if (!project) {
+     return req.status(404).json({ message: "Project not found" });
+    }
+
+    if(project.user.toString() !== req.user._id){
+     return res.status(403).json({ message: "user is not authorized to delete this project" });
+}
+
+const deletedProject = await Project.findByIdAndDelete(req.params.id );
+  const deletedTasks = await Task.deleteMany({ project: req.params.id});
+   res.status(201).json(deletedProject, deletedTasks);
+  
+    }catch(err){
+ res.status(500).json(err);
+    }
 })
+
+export default router;
