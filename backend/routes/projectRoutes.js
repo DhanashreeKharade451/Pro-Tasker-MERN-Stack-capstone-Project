@@ -2,8 +2,29 @@ import express from 'express';
 import Project from "../models/Project.js"
 import { authMiddleware } from '../utils/auth.js';
 import taskRoutes from '../routes/taskRoutes.js'
+
+import{
+    createProject,
+    getProjects,
+    getProjectById,
+    updatedProject,
+    deleteProject,
+} from "../controllers/projectController.js"
+
 const router = express.Router();
 
+// Apply auth to all routes
+router.use(authMiddleware);
+
+
+router.post("/", createProjects);
+router.get("/", getProjects);
+router.get("/:id", getProjects);
+router.put("/:id", updateProject);
+router.delete("/:id", deleteProjects);
+
+
+// Nested routes
 router.use("/:projectId/tasks", taskRoutes);
 
 //POST /api/projects--- create a new project

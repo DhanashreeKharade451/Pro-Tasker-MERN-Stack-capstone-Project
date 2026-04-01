@@ -1,9 +1,9 @@
-import { request } from "express";
+import express from "express"
 import Project from "../models/Project.js"
 import Task from "../models/Task.js";
 
 //create project:
-export const createProject = async(req, res) =>{
+export const createProjects = async(req, res) =>{
     try{
         const newProject = await Project.create({
             ...req.body,
@@ -27,11 +27,11 @@ export const getProjects = async(req, res) => {
 
 // GET single project
 
-export const getProject = async (req,res) => {
+export const getProjectById = async (req,res) => {
     try{
         const project = await Project.findOne({
-            _id: req.param.id,
-            user:request.user.id,
+            _id: req.params.id,
+            user:request.user._id,
         });
 
         if (!project) return res.status(400).json({message:"project not found"});
@@ -54,7 +54,7 @@ export const updateProject = async (req,res) => {
         const updatedProject =await Project.findByIdAndUpdate(req.param.id, req.body, {
             new:true
         });
-        res.status(200).json(updateProject);
+        res.status(200).json(updatedProject);
     }catch(err){
         res.status(500).json({message: err.message});
     }
@@ -66,16 +66,16 @@ export const deleteProject = async (req, res) => {
     try{
         const project = await Project.findById(req.param.id);
         
-        if(!Project) return res.status(404).json({Message: "Project no found"});
+        if(!project) return res.status(404).json({Message: "Project no found"});
 
         if(project.user.toString() !== res.user._id)
           return res.status(403).json({ message: "Not authorized" });
 
-        await Project.findByIdAndDelete(req.param.id);
-        await Task.deleteMany({project: req.param.id});
+        await Project.findByIdAndDelete(req.params.id);
+        await Task.deleteMany({project: req.params.id});
 
          res.status(200).json({ message: "Project and tasks deleted" });
     }catch(err){
         res.status(500).json({message: err.message})
     }
-}
+};
