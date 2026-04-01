@@ -42,7 +42,28 @@ export const updateTask = async (req, res) => {
     if (task.project.user.toString() !== req.user._id)
       return res.status(403).json({ message: "Not authorized" });
 
-    }catch{
+    const updatedTask = await Task.findByIdAndUpdate(req.params.taskId, req,body, {new: true})
+    res.status(200).json(updatedTask);
 
+    }catch(err){
+        res.status(500).json({message:err.message});
+    }
+};
+
+//Delete task
+
+export const deleteTask = async (req,res) => {
+    try{
+        const task = await Task.findById(req.params.taskId).populate("project")
+
+        if (!task) return res.status(404).json({ message: "Task not found" });
+    if (task.project.user.toString() !== req.user._id)
+      return res.status(403).json({ message: "Not authorized" });
+
+    await Task.findByIdAndDelete(req.params.taskId);
+    res.status(200).json({ message: "Task deleted" });
+
+    }catch(err){
+        res.status(500).json({message: err.msg})
     }
 }
