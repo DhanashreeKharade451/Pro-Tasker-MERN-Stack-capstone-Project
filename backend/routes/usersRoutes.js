@@ -25,7 +25,7 @@ router.post("/register", async (req,res) => {
 
 router.post("/login",async (req,res) => {
     try{
-        const user =await user.findOne({email: req.body.email});
+        const user =await User.findOne({email: req.body.email});
 
         if(!user){
            return res.status(400).json({ message: "Can't find this user" });
@@ -44,4 +44,4 @@ router.post("/login",async (req,res) => {
     }
 });
 
-export default router;
+export default router
