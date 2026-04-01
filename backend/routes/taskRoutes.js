@@ -3,9 +3,24 @@ import Task from '../models/Task.js'
 import { authMiddleware } from '../utils/auth.js';
 import Project from '../models/Project.js';
 
+import {
+    createProject,
+    getProjects,
+    getProject,
+    updateProject,
+    deleteProjact,
+} from "../controllers/projectController.js"
+
 const router = express.Router();
 
 router.use(authMiddleware);
+
+router.post("/", createProject);
+router.get("/", getProjects);
+router.get("/:id", getProject);
+router.put("/:id", updateProject);
+router.delete("/:id", deleteProjact);
+
 
 //POST /api/projects/:projectId/tasks    --- create a task
 router.post('/:projectId/tasks', async (req, res) => {
