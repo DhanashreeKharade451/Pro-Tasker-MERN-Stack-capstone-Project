@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { userClient } from "../clients/api";
-import { data } from "react-router-dom";
+
 import { useUser } from "../context/UserContext";
 function Register() {
 
@@ -32,7 +32,7 @@ function Register() {
     try{
         
     //send the form data to backend
-    const {data} = await userClient.post('/Dashboard',form)
+    const {data} = await userClient.post('/register',form)
     console.log(data)
 
      //take the token and store it locally
@@ -42,7 +42,7 @@ function Register() {
     setUser(data.user)
 
     //take the user to different page
-    navigate("/project")
+    navigate("/projects")
 
     }catch(err){
         console.log(err)

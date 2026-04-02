@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { userClient } from "../clients/api";
-import { data } from "react-router-dom";
+
 import { useUser } from "../context/UserContext";
 
 

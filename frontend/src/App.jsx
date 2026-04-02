@@ -29,6 +29,17 @@ function App() {
     <Routes>
       <Route path="/" element={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
+
+{/* protected routes */}
+<Route>
+  path = "/projects"
+  element={
+    <ProtectedRoute>
+    <Project/>
+  </ProtectedRoute>
+  }
+</Route>
+
       <Route path="/dashboard" element={<Dashboard/>}/>
       <Route path="/project/:id" element={<Project/>}/>
       {/* <Route path="/task" element={<Task/>}/> */}
