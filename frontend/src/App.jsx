@@ -1,15 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import { useEffect } from 'react'
 import './App.css'
+import { Routes,Route } from 'react-router-dom'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    // async function getData() {
+    //   const response = await fetch('http://localhost:3000')
+    //   const data = await response.json()
+    //   console.log(data)
+    // }
+    // getData( )
+  },[])
 
   return (
     <>
-      Hello World!
+    <Routes>
+      <Route path="/login" element={null}/>
+      <Route path="/register" element={null}/>
+      <Route path="/dashboard" element={null}/>
+      <Route path="/project" element={null}/>
+      <Route path="/task" element={null}/>
+
+    </Routes>
     </>
   )
 }
