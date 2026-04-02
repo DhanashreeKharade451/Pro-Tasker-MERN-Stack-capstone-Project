@@ -32,7 +32,7 @@ function Register() {
     try{
         
     //send the form data to backend
-    const {data} = await userClient.post('/register',form)
+    const {data} = await userClient.post('/Dashboard',form)
     console.log(data)
 
      //take the token and store it locally
