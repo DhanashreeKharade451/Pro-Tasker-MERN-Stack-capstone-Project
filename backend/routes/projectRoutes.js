@@ -7,7 +7,7 @@ import{
     createProject,
     getProjects,
     getProjectById,
-    updatedProject,
+    updateProject,
     deleteProject,
 } from "../controllers/projectController.js"
 
@@ -17,11 +17,11 @@ const router = express.Router();
 router.use(authMiddleware);
 
 
-router.post("/", createProjects);
+router.post("/", createProject);
 router.get("/", getProjects);
-router.get("/:id", getProjects);
+router.get("/:id", getProjectById);
 router.put("/:id", updateProject);
-router.delete("/:id", deleteProjects);
+router.delete("/:id", deleteProject);
 
 
 // Nested routes
@@ -102,7 +102,7 @@ const updatedProject = await Project.findByIdAndUpdate(
 //DELETE /api/projects/:id-------------- delete a project and it's tasks
 router.delete("/:id", authMiddleware, async (req,res) => {
     try{
- const project = await Project.findByIdandDelete(req.params.id);
+ const project = await Project.findById(req.params.id);
 
     if (!project) {
      return res.status(404).json({ message: "Project not found" });
@@ -112,12 +112,16 @@ router.delete("/:id", authMiddleware, async (req,res) => {
      return res.status(403).json({ message: "user is not authorized to delete this project" });
 }
 
+ // Delete the project
 const deletedProject = await Project.findByIdAndDelete(req.params.id );
+
+    // Delete all tasks linked to this project
   const deletedTasks = await Task.deleteMany({ project: req.params.id});
+  
    res.status(201).json(deletedProject, deletedTasks);
   
     }catch(err){
- res.status(500).json(err);
+ res.status(500).json({message: err.message});
     }
 })
 

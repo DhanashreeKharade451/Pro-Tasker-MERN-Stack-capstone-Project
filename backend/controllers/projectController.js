@@ -3,7 +3,7 @@ import Project from "../models/Project.js"
 import Task from "../models/Task.js";
 
 //create project:
-export const createProjects = async(req, res) =>{
+export const createProject = async(req, res) =>{
     try{
         const newProject = await Project.create({
             ...req.body,
@@ -31,7 +31,7 @@ export const getProjectById = async (req,res) => {
     try{
         const project = await Project.findOne({
             _id: req.params.id,
-            user:request.user._id,
+            user:req.user._id,
         });
 
         if (!project) return res.status(400).json({message:"project not found"});
@@ -64,11 +64,11 @@ export const updateProject = async (req,res) => {
 //Delete project and its tasks
 export const deleteProject = async (req, res) => {
     try{
-        const project = await Project.findById(req.param.id);
+        const project = await Project.findById(req.params.id);
         
         if(!project) return res.status(404).json({Message: "Project no found"});
 
-        if(project.user.toString() !== res.user._id)
+        if(project.user.toString() !== req.user._id)
           return res.status(403).json({ message: "Not authorized" });
 
         await Project.findByIdAndDelete(req.params.id);

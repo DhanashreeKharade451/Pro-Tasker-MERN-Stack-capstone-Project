@@ -5,7 +5,7 @@ import Project from "../models/Project.js";
 
 export const createTask = async (req, res) => {
     try{
-        const project = await Project.findById(req.params.ProjectId);
+        const project = await Project.findById(req.params.projectId);
 
         if (!project) return res.status(404).json({ message: "Project not found" });
     if (project.user.toString() !== req.user._id)
@@ -20,7 +20,7 @@ res.status(400).json({ message: err.message });
 };
 
 //Get all tasks for all projects
-export const getTask = async (req,res){
+export const getTask = async (req,res) => {
     try{
         const project = await Project.findById(req.params.projectId);
     if (!project || project.user.toString() !== req.user._id)
@@ -42,7 +42,7 @@ export const updateTask = async (req, res) => {
     if (task.project.user.toString() !== req.user._id)
       return res.status(403).json({ message: "Not authorized" });
 
-    const updatedTask = await Task.findByIdAndUpdate(req.params.taskId, req,body, {new: true})
+    const updatedTask = await Task.findByIdAndUpdate(req.params.taskId, req.body, {new: true})
     res.status(200).json(updatedTask);
 
     }catch(err){
@@ -64,6 +64,6 @@ export const deleteTask = async (req,res) => {
     res.status(200).json({ message: "Task deleted" });
 
     }catch(err){
-        res.status(500).json({message: err.msg})
+        res.status(500).json({message: err.message})
     }
 }

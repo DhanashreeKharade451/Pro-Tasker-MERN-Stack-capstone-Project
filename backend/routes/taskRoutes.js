@@ -4,22 +4,30 @@ import { authMiddleware } from '../utils/auth.js';
 import Project from '../models/Project.js';
 
 import {
-    createProject,
-    getProjects,
-    getProject,
-    updateProject,
-    deleteProjact,
-} from "../controllers/projectController.js"
+   createTask,
+   getTask,
+   updateTask,
+   deleteTask,
+} from "../controllers/taskController.js"
 
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 
+//importent for nested routes
 router.use(authMiddleware);
 
-router.post("/", createProject);
-router.get("/", getProjects);
-router.get("/:id", getProject);
-router.put("/:id", updateProject);
-router.delete("/:id", deleteProjact);
+// POST /api/projects/:projectId/tasks
+router.post("/", createTask);
+
+// GET /api/projects/:projectId/tasks
+router.get("/", getTask);
+
+// PUT /api/tasks/:taskId
+router.put("/:taskId", updateTask);
+
+// DELETE /api/tasks/:taskId
+router.delete("/:taskId", deleteTask);
+
+
 
 
 //POST /api/projects/:projectId/tasks    --- create a task
