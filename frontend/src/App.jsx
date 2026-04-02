@@ -1,19 +1,19 @@
-import { useEffect } from 'react'
-import './App.css'
-import { Routes,Route } from 'react-router-dom'
+import { useEffect } from "react";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
 
+import ProtectedRoute from "./components/ProtectedRoute";
+import ProjectPage from "./pages/ProjectPage";
+import Projects from "./pages/Projects";
 
-import Register from './pages/Register'
-import Login from './pages/Login'
-import Dashboard from './pages/Dashboard'
-import Project from './pages/Project'
-import Task from './pages/Task'
+import userClient from "./clients/api";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+// import Project from './pages/Project'
+// import Task from './pages/Task'
 
-import Navbar from './components/Navbar'
-import Projects from './pages/Projects'
-
-import ProjectPage from './pages/ProjectPage'
-
+import Navbar from "./components/Navbar";
 
 function App() {
   useEffect(() => {
@@ -23,42 +23,41 @@ function App() {
     //   console.log(data)
     // }
     // getData( )
-  },[])
+  }, []);
 
   return (
     <>
-       <Navbar/>
+      <Navbar />
 
-    <Routes>
-      <Route path="/" element={<Login/>}/>
-      <Route path="/register" element={<Register/>}/>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-{/* protected routes */}
-<Route>
-  path = "/projects"
-  element={
-    <ProtectedRoute>
-    <Projects/>
-  </ProtectedRoute>
-  }
-</Route>
+        {/* protected routes */}
+        <Route
+          path = "/projects" element=
+          {
+            <ProtectedRoute>
+              <Projects />
+            </ProtectedRoute>
+          }
+        />
 
-<Route
-  path="/projects/:id"
-  element={
-    <ProtectedRoute>
-      <ProjectPage />
-    </ProtectedRoute>
-  }
-/>
+        <Route
+          path="/projects/:id"
+          element={
+            <ProtectedRoute>
+              <ProjectPage />
+            </ProtectedRoute>
+          }
+        />
 
-      <Route path="/dashboard" element={<Dashboard/>}/>
-      
-      {/* <Route path="/task" element={<Task/>}/> */}
+        <Route path="/dashboard" element={<Dashboard />} />
 
-    </Routes>
+        {/* <Route path="/task" element={<Task/>}/> */}
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

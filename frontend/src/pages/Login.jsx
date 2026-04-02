@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { userClient } from "../clients/api";
+import API from "../clients/api";
 
 import { useUser } from "../context/UserContext";
 
@@ -33,7 +33,7 @@ function Login() {
     try{
         
     //send the form data to backend
-    const {data} = await userClient.post('/login',form)
+    const {data} = await API.post('/users/login',form)
     console.log(data)
 
      //take the token and store it locally
