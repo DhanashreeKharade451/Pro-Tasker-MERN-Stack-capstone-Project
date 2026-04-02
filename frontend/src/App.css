@@ -1,0 +1,32 @@
+/* reset */
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 2px solid red;
+}
+
+body{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:  #e0e8f8;
+    color:  #0a0a0a;
+
+}
+
+/* container */
+.container{
+    max-width: 900px;
+
+    
+}
+
+/* NavBar */
+nav{
+    background: #a4c3f5;
+    padding: 15px 30px;
+}
+
+nav ul{
+    
+}
