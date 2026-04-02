@@ -1,30 +1,70 @@
 import { useState } from "react";
 
-function Register(){
+function Register() {
+  const [form, setForm] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    const [form, setForm] = useState({
-        username: '',
-        email: '',
-        password:'' 
-       })
+  const handleSubmit = (e) => {
+    e.preventDefault()
 
-    return(
-        <div>
-           <h1> Register Page</h1>
-           <form>
-            <label htmlFor="username">Username: </label>
-            <input value={form.username} id="username" name="username" type="text" required />
+    console.log(form)
 
-            <label htmlFor="email">Email: </label>
-            <input value={form.email} id="email" name="email" type="email" required />
+    //send the form data to backend
 
-            <label htmlFor="password">Password: </label>
-            <input value={form.password} id="password" name="password" type="password" required />
+    //take the token and store it locally
 
-            <button>Register</button>
-           </form>
-        </div>
-    )
+    //save some user data in our state
+
+    //take the user to different page
+  }
+
+  return (
+    <div>
+      <h1> Register Page</h1>
+      <form onSubmit = {handleSubmit}>
+        <label htmlFor="username">Username: </label>
+        <input
+          value={form.username}
+          onChange={handleChange}
+          id="username"
+          name="username"
+          type="text"
+          required
+        />
+
+        <label htmlFor="email">Email: </label>
+        <input
+          value={form.email}
+          onChange={handleChange}
+          id="email"
+          name="email"
+          type="email"
+          required
+        />
+
+        <label htmlFor="password">Password: </label>
+        <input
+          value={form.password}
+          onChange={handleChange}
+          id="password"
+          name="password"
+          type="password"
+          required
+        />
+
+        <button>Register</button>
+      </form>
+    </div>
+  );
 }
 
 export default Register;
