@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { userClient } from "../clients/api";
+import { data } from "react-router-dom";
 
 function Register() {
   const [form, setForm] = useState({
@@ -13,18 +15,31 @@ function Register() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     console.log(form)
 
+    try{
+        
     //send the form data to backend
+    const {data} = await userClient.post('/register',form)
+    console.log(data)
 
-    //take the token and store it locally
+     //take the token and store it locally
+    localStorage.setItem("token", data.token)
 
     //save some user data in our state
 
     //take the user to different page
+
+    }catch(err){
+        console.log(err)
+        alert(err.message);
+    }
+
+
+   
   }
 
   return (

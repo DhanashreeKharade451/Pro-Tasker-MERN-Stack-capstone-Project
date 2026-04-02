@@ -6,7 +6,7 @@ import userRoutes from './routes/usersRoutes.js'
 import projectRoutes from './routes/projectRoutes.js'
 import taskRoutes from './routes/taskRoutes.js'
 
-import cors from cors;
+import cors from "cors";
 
 
 const app = express();
