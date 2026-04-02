@@ -10,6 +10,7 @@ import Project from './pages/Project'
 import Task from './pages/Task'
 
 import Navbar from './components/Navbar'
+import Projects from './pages/Projects'
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
   path = "/projects"
   element={
     <ProtectedRoute>
-    <Project/>
+    <Projects/>
   </ProtectedRoute>
   }
 </Route>
