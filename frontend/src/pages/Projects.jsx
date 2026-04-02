@@ -74,8 +74,23 @@ function Projects(){
           <button> Create Project</button>
     </form>
 
+    {/* ✅ Display Projects */}
+    {Projects.map((p) => (
+        <div key = {p._id}>
+            <h3>
+                <Link to ={`/projects/${p._id}`}>{p.name}</Link>
+
+            </h3>
+            <p>{p.description}</p>
+            <button onClick={() => handleDelete(p._id)}>Delete</button>
+            
+        </div>
+    ))}
+
 </div>
 
-  )
+  );
 
 }
+
+export default Projects;
