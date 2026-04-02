@@ -1,6 +1,7 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 const UserContext = createContext(null)
 
+// custom provider to wrap our app
 function UserProvider({children}){
 
     const [user, setUser] = useState(null)
@@ -17,6 +18,12 @@ function UserProvider({children}){
             </UserContext.Provider>
         </>
     )
+}
+
+//custom hook to easily access context value
+
+export function useUser(){
+    return useContext(UserContext)
 }
 
 export default UserProvider;

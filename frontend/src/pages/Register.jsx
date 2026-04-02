@@ -1,8 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { userClient } from "../clients/api";
 import { data } from "react-router-dom";
-
+import { useUser } from "../context/UserContext";
 function Register() {
+
+    //bring in the setter function from the context
+    const {setUser} = useUser()
+
+    const navigate = useNavigate()
+  
+
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -30,8 +39,10 @@ function Register() {
     localStorage.setItem("token", data.token)
 
     //save some user data in our state
+    setUser(data.user)
 
     //take the user to different page
+    navigate("/project")
 
     }catch(err){
         console.log(err)
