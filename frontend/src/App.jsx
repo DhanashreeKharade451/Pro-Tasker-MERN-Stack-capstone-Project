@@ -12,6 +12,8 @@ import Task from './pages/Task'
 import Navbar from './components/Navbar'
 import Projects from './pages/Projects'
 
+import ProjectPage from './pages/ProjectPage'
+
 
 function App() {
   useEffect(() => {
@@ -41,8 +43,17 @@ function App() {
   }
 </Route>
 
+<Route
+  path="/projects/:id"
+  element={
+    <ProtectedRoute>
+      <ProjectPage />
+    </ProtectedRoute>
+  }
+/>
+
       <Route path="/dashboard" element={<Dashboard/>}/>
-      <Route path="/project/:id" element={<Project/>}/>
+      
       {/* <Route path="/task" element={<Task/>}/> */}
 
     </Routes>
