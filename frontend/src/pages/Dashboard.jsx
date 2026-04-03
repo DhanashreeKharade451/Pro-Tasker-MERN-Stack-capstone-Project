@@ -80,8 +80,9 @@ function Dashboard() {
 
         <div style={styles.card}>
           <h2>
-            {console.log(projects.reduce((acc, p) => acc + (p.tasks?.length || 0), 0))}
-            {projects.reduce((acc, p) => acc + (p.tasks?.length || 0), 0)}
+            {Tasks.length}
+            {/* {console.log(projects.reduce((acc, p) => acc + (p.tasks?.length || 0), 0))}
+            {projects.reduce((acc, p) => acc + (p.tasks?.length || 0), 0)} */}
           </h2>
           <p>Total Tasks</p>
         </div>
