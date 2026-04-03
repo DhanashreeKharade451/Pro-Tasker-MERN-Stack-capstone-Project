@@ -69,6 +69,11 @@ function Dashboard() {
             >
               <h3>{p.name}</h3>
               <p>{p.description}</p>
+               <p>
+    <span style={styles.badge}>To Do: {p.tasks?.filter(t => t.status === "TO Do").length}</span>
+    <span style={styles.badge}>In Progress: {p.tasks?.filter(t => t.status === "In Progress").length}</span>
+    <span style={styles.badge}>Done: {p.tasks?.filter(t => t.status === "Done").length}</span>
+  </p>
 
               <Link to={`/projects/${p._id}`} style={styles.button}>
                 View Project
@@ -93,7 +98,8 @@ export default Dashboard;
 
 const styles = {
   container: {
-    padding: "30px",
+    
+    padding: "20px",
     minHeight: "100vh",
     fontFamily: "Arial, sans-serif",
   },
@@ -108,6 +114,7 @@ const styles = {
     display: "flex",
     gap: "35px",
     marginBottom: "30px",
+  flexWrap: "wrap", // allows wrapping on smaller screens
   },
 
   card: {
@@ -117,15 +124,22 @@ const styles = {
     borderRadius: "10px",
     boxShadow: "0 2px 8px rgba(0, 12, 12, 0.08)",
     textAlign: "center",
+    transition: "transform 0.2s",
   },
 
   projectSection: {
     marginTop: "20px",
+    display: "flex",
+     flexDirection: "column",
+     gap: "20px",
+ marginTop: "5vh",
+     marginBottom: "5vh"
   },
 
   projectCard: {
     background: "#a9ceb5",
     border: "1px solid #ccc",
+    borderRadius: "10px",
     padding: "10px",
     marginBottom: "10px",
     boxShadow: "0 2px 6px rgba(224, 18, 18, 0.06)",
