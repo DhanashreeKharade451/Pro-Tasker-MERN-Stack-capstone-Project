@@ -20,19 +20,31 @@ res.status(400).json({ message: err.message });
 };
 
 //Get all tasks for all projects
-export const getTask = async (req,res) => {
-    try{
-        const project = await Project.findById(req.params.projectId);
-    if (!project || project.user.toString() !== req.user._id)
-      return res.status(403).json({ message: "Not authorized" });
 
-    const tasks = await Task.find({ project: req.params.projectId });
+export const getTask = async (req, res) => {
+  try {
+    const tasks = await Task.find({
+      project: req.params.projectId,
+    });
+
     res.status(200).json(tasks);
-
-    }catch(err){
-         res.status(500).json({ message: err.message });
-    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 };
+// export const getTask = async (req,res) => {
+//     try{
+//         const project = await Project.findById(req.params.projectId);
+//     if (!project || project.user.toString() !== req.user._id)
+//       return res.status(403).json({ message: "Not authorized" });
+
+//     const tasks = await Task.find({ project: req.params.projectId });
+//     res.status(200).json(tasks);
+
+//     }catch(err){
+//          res.status(500).json({ message: err.message });
+//     }
+// };
 
 //Update Task
 export const updateTask = async (req, res) => {

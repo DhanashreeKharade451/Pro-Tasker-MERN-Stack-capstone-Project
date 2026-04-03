@@ -17,7 +17,7 @@ const router = express.Router();
 router.use(authMiddleware);
 
 
-router.post("/", createProject);
+// router.post("/", createProject);
 router.get("/", getProjects);
 router.get("/:id", getProjectById);
 router.put("/:id", updateProject);
