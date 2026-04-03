@@ -91,9 +91,9 @@ function Dashboard() {
               <p>{p.description}</p>
 
               <p>
-  <span style={styles.badge}>
+  {/* <span style={styles.badge}>
     {getMainStatus(p.tasks)}
-  </span>
+  </span> */}
 </p>
               
               {/* <p>
