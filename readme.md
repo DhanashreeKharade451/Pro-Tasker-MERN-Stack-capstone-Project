@@ -1,99 +1,97 @@
+Pro-Tasker – MERN Stack Project Management App
+Project Description:
+////////////////////
+
+ro-Tasker is a full-stack project management application built using the MERN stack (MongoDB, Express, React, Node.js). It allows users to create and manage projects, organize tasks, and track progress efficiently.
+
+The application is designed to be intuitive for individual users while also supporting collaborative workflows for small teams. Users can securely register, log in, create projects, and manage tasks within those projects using a clean and responsive interface.
 ***************************************************************************************
-
-Frontend Documentation
-********************
- Overview
-
-The frontend of this application is built using React and provides an interactive user interface for managing projects and tasks. It communicates with a backend API to perform authentication and CRUD operations.
-
-Tech Stack
-React (with Hooks)
-React Router DOM (for client-side routing)
-Axios (for API communication)
-Context API (for global state management)
-**********************************************************************************
-Authentication Flow:
+Key features include:
 *******************
-Users can register and log in.
-On successful login/register:
-JWT token is stored in localStorage.
-User data is stored in Context API.
-Axios automatically attaches the token to all API requests.
-Protected routes prevent unauthorized access.
-**********************************************
-Routing:
+Secure user authentication using JWT
+Full CRUD functionality for projects and tasks
+Task status tracking (To Do, In Progress, Done)
+Protected routes and authorization
+Scalable backend API with RESTful design
+***************************************************************************************
+Instructions to Set Up and Run Locally:
 
-Route	Description
-/login	User login page
-/register	User registration page
-/dashboard	User dashboard
-/projects	List of all projects
-/projects/:id	Single project with tasks
-**********************************************************************
-State Management
+To run the Pro-Tasker application locally, both the backend and frontend must be configured and started.
 
-The Context API is used to:
+1. Clone the Repository
 
-Store authenticated user data
-Manage login/logout functionality
-Provide user state across all components
-***********************************************************************************************
-API Integration:
+Download the project from your version control system (e.g., GitHub) to your local machine.
 
-All API requests are handled using Axios.
+2. Backend Setup
 
-Example:
-await API.get("/projects");
-await API.post("/users/login", formData);
-Token Handling:
-JWT token is stored in localStorage
-Automatically added to request headers:
-Authorization: Bearer <token>
-*************************************************************************
-Features
-* User Features:
-Register new account
-Login/logout
-Persistent authentication
+Navigate to the backend folder and install all required dependencies.
+Create an environment configuration file to store sensitive data such as the database connection string and JWT secret key.
+Start the backend server. It will run on a local port (commonly 3000)
 
-* Project Features:
-Create new project
-View all projects
-Delete projects
+3. Frontend Setup
 
- Task Features:
-Create tasks under a project
-View tasks per project
-Update task status
-Delete tasks
+Navigate to the frontend folder and install the required dependencies.
+Start the frontend development server. The application will typically run on a different port (such as 5173).
 
-****************************************************************
-Protected Routes
+4. Database Connection
 
-Routes like /projects and /dashboard are protected and require authentication.
-**********************************
-Loading & Error Handling:
+Ensure that MongoDB Atlas (or local MongoDB) is properly connected using the connection string in your environment file.
 
-Loading states are shown during API calls
-Errors are handled and displayed to users 
-**********************************************
-How to Run Frontend
-Navigate to frontend directory:
-cd client
-Install dependencies:
-npm install
-Start development server:
-npm run dev
-Open in browser:
-http://localhost:5173
+5. Authentication Requirement
 
-**************************************************
-????????????
-My DashBoard should show :
-Welcome user
-✅ Total projects
-✅ Quick project list
-✅ Button to create project
-✅ Navigation to project details
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-**************************************************************************************************************************************************************
+To access protected routes, users must log in. A JWT token is generated upon login and must be included in API requests for authorization.
+***************************************************************************************
+API Endpoints Overview
+***********************
+
+The backend follows a RESTful API structure. All endpoints related to projects and tasks are protected and require authentication.
+
+*************************************************************************************
+Authentication Endpoints
+
+Register User
+Allows a new user to create an account by providing a username, email, and password.
+
+Login User
+Authenticates an existing user and returns a JWT token that is used for accessing protected routes.
+************************************************************************************
+Project Management Endpoints
+
+Get All Projects
+Retrieves all projects created by the logged-in user.
+
+Create Project
+Allows a user to create a new project by providing a name and description.
+
+Get Single Project
+Fetches details of a specific project using its unique identifier.
+
+Update Project
+Allows the project owner to update project details such as name or description.
+
+Delete Project
+Allows the project owner to delete a project. Associated tasks are also removed.
+**************************************************************************************
+Task Management Endpoints (Nested under Projects)
+
+Get Tasks for a Project
+Retrieves all tasks associated with a specific project.
+
+Create Task
+Allows the user to create a new task within a project, including title, description, and status.
+
+Update Task
+Allows updating task details such as title, description, or status.
+
+Delete Task
+Removes a task from a project.
+************************************************************************************
+Authentication & Authorization:
+
+All project and task-related operations require authentication.
+JWT tokens are used to verify user identity.
+Only the owner of a project is authorized to update or delete it.
+Task operations are restricted to users who have access to the project.
+***************************************************************************************
+*                     Thank You                                                       *
+***************************************************************************************
