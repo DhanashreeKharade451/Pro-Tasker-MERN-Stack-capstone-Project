@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../clients/api"
+import Task from "./Task";
 
 function ProjectPage(){
     const{id} =useParams(); ///project ID from URL
@@ -26,6 +27,7 @@ function ProjectPage(){
   const fetchTasks = async () => {
     try {
       const res = await API.get(`/projects/${id}/tasks`);
+       console.log("TASKS:", res.data);
       setTasks(res.data);
     } catch (err) {
       console.log(err);

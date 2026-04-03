@@ -5,7 +5,7 @@ import { Link, useNavigate
  } from "react-router-dom";
 
 function Projects(){
-    const [Projects, setProjects] = useState([]);
+    const [projects, setProjects] = useState([]);
     const[form, setForm] =useState({
         name: "",
     description: "",
@@ -42,6 +42,7 @@ function Projects(){
       fetchProjects(); // refresh list
     } catch (err) {
       console.log(err);
+       alert("Failed to create project");
     }
   };
 
@@ -52,6 +53,7 @@ function Projects(){
       fetchProjects();
     } catch (err) {
       console.log(err);
+       alert("Failed to delete project");
     }
   };
 
@@ -77,7 +79,9 @@ function Projects(){
     </form>
 
     {/* ✅ Display Projects */}
-    {Projects.map((p) => (
+    {projects.length === 0 ? (<p>No projects yet</p>
+    ): (
+      projects.map((p) => (
         <div key = {p._id}>
             <h3>
                 <Link to ={`/projects/${p._id}`}>{p.name}</Link>
@@ -87,7 +91,8 @@ function Projects(){
             <button onClick={() => handleDelete(p._id)}>Delete</button>
             
         </div>
-    ))}
+    ))
+    )}
 
 </div>
 
