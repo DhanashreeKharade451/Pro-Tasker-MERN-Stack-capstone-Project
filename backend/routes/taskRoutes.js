@@ -97,7 +97,7 @@ router.post('/:projectId/tasks', async (req, res) => {
                     return res.status(404).json({message: "Task not found"})
                 }
         
-                if (task.project.user.toString() !== req.user._id){
+                if (task.project.user.toString() !== req.user._id.toString()){
                     return res.status(403).json({message: 'User is not authorized to delete the task'})
                 }  
         
@@ -105,7 +105,7 @@ router.post('/:projectId/tasks', async (req, res) => {
                 res.status(200).json(deletedTask);           
         
     }catch(err){
-        res.status(500).json({message: error.message});
+        res.status(500).json({message: err.message});
     }
  })
  export default router;

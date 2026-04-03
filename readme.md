@@ -85,7 +85,14 @@ npm run dev
 Open in browser:
 http://localhost:5173
 
-
+**************************************************
+????????????
+My DashBoard should show :
+Welcome user
+✅ Total projects
+✅ Quick project list
+✅ Button to create project
+✅ Navigation to project details
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ***************************************************************************************project proposal*********************************************
 A description of the project.

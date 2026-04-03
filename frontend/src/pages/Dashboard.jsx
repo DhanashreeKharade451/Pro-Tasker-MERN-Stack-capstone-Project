@@ -18,7 +18,7 @@ function Dashboard() {
     } catch (err) {
       console.log(err);
     } finally {
-      setloading(false);
+      setLoading(false);
     }
   };
 
@@ -34,8 +34,8 @@ function Dashboard() {
 
       {/* stats section */}
 
-      <div>
-        <div>
+      <div style={styles.statsContainer}>
+        <div style={styles.card}>
           <h2>{projects.length}</h2>
           <p>Total Projects</p>
         </div>
@@ -90,25 +90,36 @@ const styles = {
   heading: {
     marginBottom: "20px",
   },
+
+  statsContainer: {
+    display: "flex",
+    gap: "20px",
+  },
+
   card: {
     background: "#f4f4f4",
     padding: "15px",
-    margin: "10px 0",
+    flex: 1,
   },
+
   projectSection: {
     marginTop: "20px",
   },
+
   projectCard: {
     border: "1px solid #ccc",
     padding: "10px",
     marginBottom: "10px",
   },
+
   button: {
     color: "blue",
   },
+
   mainButton: {
     background: "green",
     color: "white",
     padding: "10px",
+    display: "inline-block",
   },
 };
