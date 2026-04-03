@@ -9,6 +9,7 @@ export const createProject = async(req, res) =>{
             ...req.body,
             user: req.user._id,
         });
+        await newProject.populate("user", 'username');
         res.status(201).json(newProject);
     }catch(err){
         res.status(400).json({message: err.message});
@@ -19,8 +20,8 @@ export const createProject = async(req, res) =>{
 export const getProjects = async(req, res) => {
     try{
         const projects = await Project.find({user: req.user._id})
-        .populate("user")
-        // .populate("tasks");
+       // .populate("user")
+        
         res.status(200).json(projects);
     }catch(err){
         console.log(err)

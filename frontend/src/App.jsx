@@ -10,9 +10,9 @@ import userClient from "./clients/api";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import TaskPage from "./pages/TaskPage";
-import Task from './pages/Task'
 
+//import Task from './pages/Task'
+import TaskPage from "./pages/TaskPage";
 
 import Navbar from "./components/Navbar";
 
@@ -39,14 +39,14 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         {/* protected routes */}
-        {/* <Route
+        <Route
           path="/dashboard"
           element={
             <ProtectedRoute>
               <Dashboard />
             </ProtectedRoute>
           }
-        /> */}
+        />
 
         <Route
           path="/projects"
@@ -74,8 +74,6 @@ function App() {
     </ProtectedRoute>
   } 
 />
-
-<Route path="/dashboard" element={<Dashboard />} />
 
         
       </Routes>
