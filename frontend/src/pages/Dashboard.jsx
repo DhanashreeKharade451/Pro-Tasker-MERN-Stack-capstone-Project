@@ -41,6 +41,7 @@ function Dashboard() {
 
         <div style={styles.card}>
           <h2>
+            {console.log(projects.reduce((acc, p) => acc + (p.tasks?.length || 0), 0))}
             {projects.reduce((acc, p) => acc + (p.tasks?.length || 0), 0)}
           </h2>
           <p>Total Tasks</p>
@@ -71,14 +72,14 @@ function Dashboard() {
               <p>{p.description}</p>
               <p>
                 <span style={styles.badge}>
-                  To Do: {p.tasks?.filter((t) => t.status === "TO Do").length}
+                  To Do {p.tasks?.filter((t) => t.status === "TO Do").length}
                 </span>
                 <span style={styles.badge}>
-                  In Progress:{" "}
+                  In Progress{" "}
                   {p.tasks?.filter((t) => t.status === "In Progress").length}
                 </span>
                 <span style={styles.badge}>
-                  Done: {p.tasks?.filter((t) => t.status === "Done").length}
+                  Done {p.tasks?.filter((t) => t.status === "Done").length}
                 </span>
               </p>
 

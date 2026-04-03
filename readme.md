@@ -1,13 +1,7 @@
-********************************************************************************************
-project proposal*********************************************
-A description of the project.
-A list of the features you plan to include.
-A list of the technologies you plan to use.
-A timeline for the project (make sure it is reasonable in scope for the time remaining).
 ***************************************************************************************
 
-************************
 Frontend Documentation
+********************
  Overview
 
 The frontend of this application is built using React and provides an interactive user interface for managing projects and tasks. It communicates with a backend API to perform authentication and CRUD operations.
