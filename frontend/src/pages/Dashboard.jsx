@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../clients/api";
 import { useUser } from "../context/UserContext";
-import { Link } from "react-router-dom";
-
+import { Link, redirect } from "react-router-dom";
 
 function Dashboard() {
   const { user } = useUser();
@@ -58,7 +57,16 @@ function Dashboard() {
           <p>No Projects yet</p>
         ) : (
           projects.slice(0, 5).map((p) => (
-            <div key={p._id} style={styles.projectCard}>
+            <div
+              key={p._id}
+              style={styles.projectCard}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.transform = "scale(1.02)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.transform = "scale(1)")
+              }
+            >
               <h3>{p.name}</h3>
               <p>{p.description}</p>
 
@@ -85,21 +93,30 @@ export default Dashboard;
 
 const styles = {
   container: {
-    padding: "20px",
+    padding: "30px",
+    minHeight: "100vh",
+    fontFamily: "Arial, sans-serif",
   },
   heading: {
-    marginBottom: "20px",
+    marginBottom: "10vh",
+    marginTop: "5vh",
+    fontSize: "30px",
+    fontWeight: "600",
   },
 
   statsContainer: {
     display: "flex",
-    gap: "20px",
+    gap: "35px",
+    marginBottom: "30px",
   },
 
   card: {
-    background: "#f4f4f4",
+    background: "#b5c8ec",
     padding: "15px",
     flex: 1,
+    borderRadius: "10px",
+    boxShadow: "0 2px 8px rgba(0, 12, 12, 0.08)",
+    textAlign: "center",
   },
 
   projectSection: {
@@ -107,19 +124,25 @@ const styles = {
   },
 
   projectCard: {
+    background: "#a9ceb5",
     border: "1px solid #ccc",
     padding: "10px",
     marginBottom: "10px",
+    boxShadow: "0 2px 6px rgba(224, 18, 18, 0.06)",
+    transition: "transform 0.2s ease",
   },
 
   button: {
-    color: "blue",
+    color: "#06067c",
+    textDecoration: "none",
+    fontWeight: "1000",
   },
 
   mainButton: {
-    background: "green",
+    background: "#040952",
     color: "white",
-    padding: "10px",
+    padding: "12px 18px",
+    borderRadius: "10px",
     display: "inline-block",
   },
 };
