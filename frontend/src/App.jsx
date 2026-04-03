@@ -36,8 +36,17 @@ function App() {
 
         {/* protected routes */}
         <Route
-          path = "/projects" element=
-          {
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/projects"
+          element={
             <ProtectedRoute>
               <Projects />
             </ProtectedRoute>
@@ -52,13 +61,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-        <Route path="/dashboard" 
-        element={
-          <ProtectedRoute>
-             <Dashboard />
-          </ProtectedRoute>
-       } />
 
         {/* <Route path="/task" element={<Task/>}/> */}
       </Routes>

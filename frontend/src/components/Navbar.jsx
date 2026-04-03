@@ -29,6 +29,7 @@ function Navbar() {
         {user? (
             <>
                 <li>Welcome {user.username}</li>
+                <li><Link to="/dashboard">Dashboard</Link></li>
           <li><button onClick={logout}>Logout</button></li>
           <li><Link to='/projects'>Projects</Link></li>
             </>
