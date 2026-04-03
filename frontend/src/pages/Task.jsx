@@ -1,8 +1,11 @@
 import API from "../clients/api";
 import { useParams } from "react-router-dom";
-import { useEffect,UseStat } from "react";
+import { useEffect,useState } from "react";
 
 function Task({task, projectId, refreshTasks}){
+
+     const [Tasks,setTasks] = useState()
+
     //Handle status change.......update status
     const handleStatusChange = async (e) =>{
         try{
@@ -15,6 +18,30 @@ function Task({task, projectId, refreshTasks}){
             console.log(err);
         }
     };
+
+     const fetchTasks = async () => {
+  try {
+    const res = await API.get("/projects"); // get all projects first
+
+    let allTasks = [];
+
+    // loop each project and get tasks
+    for (let project of res.data) {
+      const taskRes = await API.get(`/projects/${project._id}/tasks`);
+      console.log('fetchTasks')
+      allTasks = [...allTasks, ...taskRes.data];
+    }
+
+    setTasks(allTasks);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+    useEffect(() => {
+        fetchTasks();
+      }, []);
+    
 
     //Handle delete task
 

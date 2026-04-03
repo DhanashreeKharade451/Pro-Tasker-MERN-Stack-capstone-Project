@@ -8,6 +8,7 @@ function Dashboard() {
 
   const [projects, setProjects] = useState([]);
   const [Loading, setLoading] = useState(true);
+  const [Tasks,setTasks] =useState([]);
 
   //fetch Projects
   const fetchProject = async () => {
@@ -21,11 +22,30 @@ function Dashboard() {
     }
   };
 
-  useEffect(() => {
-    fetchProject();
+   const fetchTasks = async () => {
+  try {
+    const res = await API.get("/projects"); // get all projects first
+
+    let allTasks = [];
+
+    // loop each project and get tasks
+    for (let project of res.data) {
+      const taskRes = await API.get(`/projects/${project._id}/tasks`);
+      console.log('fetchTasks')
+      allTasks = [...allTasks, ...taskRes.data];
+    }
+
+    setTasks(allTasks);
+  } catch (err) {
+    console.log(err);
+  }
+};
+    useEffect(() => {
+    fetchProject(), fetchTasks();
   }, []);
 
   console.log("Projects:", projects);
+
 
 
   const getMainStatus = (tasks) => {
