@@ -1,3 +1,17 @@
+Project Deployment links:
+****************************************************************************
+Backend Deployment link:
+
+https://pro-tasker-mern-stack-capstone-project.onrender.com/
+
+*************************************************************************************
+
+FrontEnd deployment link:
+
+https://pro-tasker-mern-stack-project.netlify.app/
+
+***************************************************************************************
+
 Pro-Tasker – MERN Stack Project Management App
 1.................Project Description:
 ////////////////////
