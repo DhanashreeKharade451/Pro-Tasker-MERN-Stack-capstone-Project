@@ -77,8 +77,8 @@ function Projects(){
           />
           <button> Create Project</button>
     </form>
-
-    {/* ✅ Display Projects */}
+    <hr />
+    {/* Display Projects */}
     {projects.length === 0 ? (<p>No projects yet</p>
     ): (
       projects.map((p) => (

@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from "react";
-const UserContext = createContext(null)
+import { createContext, useContext, useState, useEffect } from "react";
+const UserContext = createContext()
 
 // custom provider to wrap our app
 function UserProvider({children}){
@@ -11,13 +11,32 @@ function UserProvider({children}){
         setUser
     }
 
+    //restore user on refresh
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+
+        if(token){
+            try{
+                const payload = JSON.parse(atob(token.split(".")[1]));
+                setUser(payload.data);  //because you user {data: payload}
+            }catch(err){
+                console.log("Invalid Token");
+            }
+        }
+    }, [])
+
+    const logout = () => {
+        localStorage.removeItem(token);
+        setUser(null);
+    };
+
     return(
         <>
-            <UserContext.Provider value={value}>
+            <UserContext.Provider value={{user, setUser,logout}}>
                 {children}
             </UserContext.Provider>
         </>
-    )
+    );
 }
 
 //custom hook to easily access context value
