@@ -69,11 +69,18 @@ function Dashboard() {
             >
               <h3>{p.name}</h3>
               <p>{p.description}</p>
-               <p>
-    <span style={styles.badge}>To Do: {p.tasks?.filter(t => t.status === "TO Do").length}</span>
-    <span style={styles.badge}>In Progress: {p.tasks?.filter(t => t.status === "In Progress").length}</span>
-    <span style={styles.badge}>Done: {p.tasks?.filter(t => t.status === "Done").length}</span>
-  </p>
+              <p>
+                <span style={styles.badge}>
+                  To Do: {p.tasks?.filter((t) => t.status === "TO Do").length}
+                </span>
+                <span style={styles.badge}>
+                  In Progress:{" "}
+                  {p.tasks?.filter((t) => t.status === "In Progress").length}
+                </span>
+                <span style={styles.badge}>
+                  Done: {p.tasks?.filter((t) => t.status === "Done").length}
+                </span>
+              </p>
 
               <Link to={`/projects/${p._id}`} style={styles.button}>
                 View Project
@@ -86,7 +93,14 @@ function Dashboard() {
       {/* CTA */}
 
       <div style={{ marginTop: "20px" }}>
-        <Link to="/projects" style={styles.mainButton}>
+        <Link
+          to="/projects"
+          style={styles.mainButton}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.transform = "scale(1.05)")
+          }
+          onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+        >
           Go to All Projects
         </Link>
       </div>
@@ -98,7 +112,6 @@ export default Dashboard;
 
 const styles = {
   container: {
-    
     padding: "20px",
     minHeight: "100vh",
     fontFamily: "Arial, sans-serif",
@@ -114,7 +127,8 @@ const styles = {
     display: "flex",
     gap: "35px",
     marginBottom: "30px",
-  flexWrap: "wrap", // allows wrapping on smaller screens
+    flexWrap: "wrap", // allows wrapping on smaller screens
+     justifyContent: "space-between",
   },
 
   card: {
@@ -130,19 +144,18 @@ const styles = {
   projectSection: {
     marginTop: "20px",
     display: "flex",
-     flexDirection: "column",
-     gap: "20px",
- marginTop: "5vh",
-     marginBottom: "5vh"
+    flexDirection: "column",
+    gap: "20px",
+     flexWrap: "wrap",
   },
 
   projectCard: {
     background: "#a9ceb5",
     border: "1px solid #ccc",
     borderRadius: "10px",
-    padding: "10px",
+    padding: "15px",
     marginBottom: "10px",
-    boxShadow: "0 2px 6px rgba(224, 18, 18, 0.06)",
+    boxShadow: "0 3px 8px rgba(0,0,0,0.08)",
     transition: "transform 0.2s ease",
   },
 
@@ -158,5 +171,16 @@ const styles = {
     padding: "12px 18px",
     borderRadius: "10px",
     display: "inline-block",
+  },
+
+  badge: {
+    display: "inline-block",
+    marginRight: "8px",
+     marginBottom: "5px",
+    padding: "4px 8px",
+    borderRadius: "6px",
+    background: "#e0f2fe",
+    color: "#0369a1",
+    fontSize: "12px",
   },
 };
