@@ -43,7 +43,7 @@ function Login() {
     setUser(data.user)
 
     //take the user to different page
-    navigate("/projects")
+    navigate("/dashboard")
 
     }catch(err){
         console.log(err)

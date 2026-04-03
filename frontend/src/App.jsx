@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import ProjectPage from "./pages/ProjectPage";
@@ -30,7 +30,10 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<Login />} />
+        Default Route
+        <Route path="/" element={<Navigate to="/dashboard" />} />
+
+        {/* <Route path="/" element={<Login />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 

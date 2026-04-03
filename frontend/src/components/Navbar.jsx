@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useUser } from "../context/UserContext";
+import Dashboard from "../pages/Dashboard";
 function Navbar() {
   //bring in user info from context
   const { user, logout } = useUser();
@@ -25,11 +26,13 @@ function Navbar() {
   }
   return (
     <nav>
+        
       <ul>
+         <li><Link to="/dashboard">Dashboard</Link></li>
         {user? (
             <>
                 <li>Welcome {user.username}</li>
-                <li><Link to="/dashboard">Dashboard</Link></li>
+               
           <li><button onClick={logout}>Logout</button></li>
           <li><Link to='/projects'>Projects</Link></li>
             </>
