@@ -1,5 +1,5 @@
 Pro-Tasker – MERN Stack Project Management App
-Project Description:
+1.................Project Description:
 ////////////////////
 
 ro-Tasker is a full-stack project management application built using the MERN stack (MongoDB, Express, React, Node.js). It allows users to create and manage projects, organize tasks, and track progress efficiently.
@@ -14,7 +14,7 @@ Task status tracking (To Do, In Progress, Done)
 Protected routes and authorization
 Scalable backend API with RESTful design
 ***************************************************************************************
-Instructions to Set Up and Run Locally:
+2.................Instructions to Set Up and Run Locally:
 
 To run the Pro-Tasker application locally, both the backend and frontend must be configured and started.
 
@@ -41,7 +41,7 @@ Ensure that MongoDB Atlas (or local MongoDB) is properly connected using the con
 
 To access protected routes, users must log in. A JWT token is generated upon login and must be included in API requests for authorization.
 ***************************************************************************************
-API Endpoints Overview
+3.***************************API Endpoints Overview*****************
 ***********************
 
 The backend follows a RESTful API structure. All endpoints related to projects and tasks are protected and require authentication.

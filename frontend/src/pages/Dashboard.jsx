@@ -26,6 +26,25 @@ function Dashboard() {
   }, []);
 
   console.log("Projects:", projects);
+
+
+  const getMainStatus = (tasks) => {
+  if (!tasks || tasks.length === 0) return "No Tasks";
+
+  const count = {
+    "To Do": 0,
+    "In Progress": 0,
+    "Done": 0,
+  };
+
+  tasks.forEach((t) => {
+    count[t.status] = (count[t.status] || 0) + 1;
+  });
+
+  return Object.keys(count).reduce((a, b) =>
+    count[a] > count[b] ? a : b
+  );
+};
   return (
     <div style={styles.container}>
       {/* header */}
@@ -70,18 +89,20 @@ function Dashboard() {
             >
               <h3>{p.name}</h3>
               <p>{p.description}</p>
+
               <p>
-                <span style={styles.badge}>
-                  To Do {p.tasks?.filter((t) => t.status === "TO Do").length}
-                </span>
-                <span style={styles.badge}>
-                  In Progress{" "}
-                  {p.tasks?.filter((t) => t.status === "In Progress").length}
-                </span>
-                <span style={styles.badge}>
-                  Done {p.tasks?.filter((t) => t.status === "Done").length}
-                </span>
-              </p>
+  <span style={styles.badge}>
+    {getMainStatus(p.tasks)}
+  </span>
+</p>
+              
+              {/* <p>
+  <span style={styles.badge}>
+    {p.tasks && p.tasks.length > 0
+      ? p.tasks[0].status
+      : "No Tasks"}
+  </span>
+</p> */}
 
               <Link to={`/projects/${p._id}`} style={styles.button}>
                 View Project
