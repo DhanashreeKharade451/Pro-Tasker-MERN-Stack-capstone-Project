@@ -30,6 +30,7 @@ function App() {
       <Navbar />
 
       <Routes>
+        <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
@@ -52,7 +53,12 @@ function App() {
           }
         />
 
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" 
+        element={
+          <ProtectedRoute>
+             <Dashboard />
+          </ProtectedRoute>
+       } />
 
         {/* <Route path="/task" element={<Task/>}/> */}
       </Routes>

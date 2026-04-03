@@ -18,15 +18,16 @@ function UserProvider({children}){
         if(token){
             try{
                 const payload = JSON.parse(atob(token.split(".")[1]));
-                setUser(payload.data);  //because you user {data: payload}
+                setUser(payload?.data || payload);  //because you user {data: payload}
             }catch(err){
                 console.log("Invalid Token");
+                 setUser(null);
             }
         }
     }, [])
 
     const logout = () => {
-        localStorage.removeItem(token);
+        localStorage.removeItem("token");
         setUser(null);
     };
 
