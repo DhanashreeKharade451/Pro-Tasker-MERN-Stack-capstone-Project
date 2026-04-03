@@ -48,6 +48,43 @@ JWT token is stored in localStorage
 Automatically added to request headers:
 Authorization: Bearer <token>
 *************************************************************************
+Features
+* User Features:
+Register new account
+Login/logout
+Persistent authentication
+
+* Project Features:
+Create new project
+View all projects
+Delete projects
+
+ Task Features:
+Create tasks under a project
+View tasks per project
+Update task status
+Delete tasks
+
+****************************************************************
+Protected Routes
+
+Routes like /projects and /dashboard are protected and require authentication.
+**********************************
+Loading & Error Handling:
+
+Loading states are shown during API calls
+Errors are handled and displayed to users 
+**********************************************
+How to Run Frontend
+Navigate to frontend directory:
+cd client
+Install dependencies:
+npm install
+Start development server:
+npm run dev
+Open in browser:
+http://localhost:5173
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ***************************************************************************************project proposal*********************************************

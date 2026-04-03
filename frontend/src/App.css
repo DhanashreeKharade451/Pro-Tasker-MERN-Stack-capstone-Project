@@ -4,7 +4,7 @@
     margin:0;
     padding: 0;
     box-sizing: border-box;
-    border: 2px solid red;
+    /* border: 2px solid red; */
 }
 
 body{
@@ -28,5 +28,67 @@ nav{
 }
 
 nav ul{
-    
+    display: flex;
+    gap:20px;
+    list-style: none;
+   
+
 }
+
+nav a {
+    color: #080808;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color:  #19048f;
+}
+
+/* headings */
+
+h1{
+    margin-bottom: 10vh;
+    color: #0609bd;
+}
+h2{
+    margin-top: 20vh;
+    margin-bottom: 5vh;
+}
+
+/* forms */
+form{
+    display: flex;
+    gap:10px;
+    margin-bottom: 20px;
+
+}
+
+input{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    flex:1;
+}
+
+input:focus{
+    outline: none;
+    border-color: #0a5a83;
+
+}
+
+/* Buttons */
+button{
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: #056188;
+    color:white;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover{background-color: #05374e;
+}
+
+/* cards(Projects and tasks) */
